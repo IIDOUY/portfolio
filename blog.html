@@ -10,34 +10,95 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- COPYING CORE STYLES FROM DASHBOARD --- */
+        /* --- CORE STYLES --- */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: #e0e0e0; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        
+        body { 
+            background-color: #e0e0e0; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            padding: 20px; 
+        }
         
         .dashboard-container {
-            width: 100%; max-width: 1400px; background-color: #ffffff; border-radius: 40px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1); overflow: hidden; display: flex; min-height: 800px; position: relative;
+            width: 100%; 
+            max-width: 1400px; 
+            background-color: #ffffff; 
+            border-radius: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1); 
+            overflow: hidden; 
+            display: flex; 
+            min-height: 800px; 
+            position: relative;
         }
 
         /* --- MAIN CONTENT AREA --- */
-        .main-content { flex: 2.5; padding: 50px 60px; background-color: #ffffff; overflow-y: auto; height: 800px; }
+        .main-content { 
+            flex: 2.5; 
+            padding: 50px 60px; 
+            background-color: #ffffff; 
+            overflow-y: auto; 
+            height: 800px; 
+        }
         
         /* Header & Nav */
-        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; flex-wrap: wrap; gap: 20px; }
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 40px; 
+            flex-wrap: wrap; 
+            gap: 20px; 
+        }
+        
         .logo { display: flex; align-items: center; font-weight: 700; font-size: 1.2rem; color: #000; }
         .logo-icon { width: 20px; height: 20px; background: #000; border-radius: 0 10px 10px 10px; margin-right: 10px; }
+        
         .nav-links { display: flex; gap: 40px; }
         .nav-links a { text-decoration: none; color: #666; font-weight: 500; font-size: 0.9rem; transition: 0.3s; }
         .nav-links a.active { color: #000; font-weight: 700; }
         .nav-links a:hover { color: #000; }
-        .btn-black { background-color: #111; color: #fff; padding: 12px 28px; border-radius: 30px; text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: 0.3s; }
+        
+        .btn-black { 
+            background-color: #111; 
+            color: #fff; 
+            padding: 12px 28px; 
+            border-radius: 30px; 
+            text-decoration: none; 
+            font-weight: 500; 
+            font-size: 0.9rem; 
+            transition: 0.3s; 
+            white-space: nowrap;
+        }
 
         /* Blog Specific Styles */
-        .blog-header h1 { font-size: 2.5rem; color: #111; margin-bottom: 10px; }
+        .blog-header h1 { font-size: 2.5rem; color: #111; margin-bottom: 10px; line-height: 1.2; }
         .blog-header p { color: #888; margin-bottom: 40px; }
 
-        .tags-container { display: flex; gap: 10px; margin-bottom: 30px; overflow-x: auto; padding-bottom: 5px; }
-        .tag-btn { padding: 8px 20px; border-radius: 20px; border: 1px solid #eee; background: #fff; cursor: pointer; font-size: 0.85rem; transition: 0.2s; }
+        .tags-container { 
+            display: flex; 
+            gap: 10px; 
+            margin-bottom: 30px; 
+            overflow-x: auto; 
+            padding-bottom: 5px; 
+            /* Hide scrollbar for cleaner look */
+            -ms-overflow-style: none;  
+            scrollbar-width: none;  
+        }
+        .tags-container::-webkit-scrollbar { display: none; }
+
+        .tag-btn { 
+            padding: 8px 20px; 
+            border-radius: 20px; 
+            border: 1px solid #eee; 
+            background: #fff; 
+            cursor: pointer; 
+            font-size: 0.85rem; 
+            transition: 0.2s; 
+            white-space: nowrap;
+        }
         .tag-btn:hover, .tag-btn.active { background: #111; color: #fff; border-color: #111; }
 
         /* Blog Grid */
@@ -52,7 +113,6 @@
 
         .blog-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.05); border-color: #ddd; }
         
-        /* Specific Card Themes to match Dashboard */
         .theme-blue { background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%); }
         .theme-red { background: linear-gradient(135deg, #ffebee 0%, #ffffff 100%); }
         .theme-green { background: linear-gradient(135deg, #e8f5e9 0%, #ffffff 100%); }
@@ -86,7 +146,7 @@
         }
         .close-modal:hover { background: #ff7556; color: white; }
 
-        .modal-content { max-width: 800px; margin: 0 auto; }
+        .modal-content { max-width: 800px; margin: 0 auto; padding-bottom: 50px; }
         .modal-tag { background: #e0e0e0; padding: 5px 15px; border-radius: 15px; font-size: 0.8rem; display: inline-block; margin-bottom: 15px; }
         .modal-title { font-size: 2.5rem; margin-bottom: 30px; line-height: 1.2; }
         .modal-body p { margin-bottom: 20px; font-size: 1.1rem; line-height: 1.8; color: #444; }
@@ -97,14 +157,47 @@
         .sidebar { flex: 1; background-color: #fcfcfc; padding: 50px 40px; border-left: 1px solid #f0f0f0; display: flex; flex-direction: column; }
         .sidebar h2 { font-size: 1.8rem; margin-bottom: 20px; }
         
-        /* Mobile Responsive */
-        @media (max-width: 1000px) {
-            .dashboard-container { flex-direction: column; height: auto; }
-            .blog-grid { grid-template-columns: 1fr; }
-            .main-content { height: auto; padding: 30px; }
-            .sidebar { border-left: none; border-top: 1px solid #eee; }
-            .article-modal { padding: 30px; position: fixed; } /* Fixed for mobile scrolling */
-            .nav-links { display: none; }
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        
+        /* Tablet & Small Desktop (Max width 1100px) */
+        @media (max-width: 1100px) {
+            .dashboard-container { flex-direction: column; height: auto; border-radius: 30px; }
+            .main-content { 
+                height: auto; 
+                padding: 40px; 
+                overflow-y: visible; /* Let the body scroll */
+            }
+            .sidebar { border-left: none; border-top: 1px solid #eee; padding: 40px; }
+            .article-modal { position: fixed; } /* Fixed to cover screen */
+        }
+
+        /* Mobile (Max width 768px) */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            
+            .dashboard-container { border-radius: 20px; }
+            
+            .main-content { padding: 30px 20px; }
+            
+            /* Header */
+            header { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .nav-links { display: none; } /* Hide nav links on mobile */
+            .btn-black { width: 100%; text-align: center; } /* Full width button */
+            
+            /* Blog Grid */
+            .blog-grid { grid-template-columns: 1fr; } /* 1 Column */
+            
+            /* Typography */
+            .blog-header h1 { font-size: 2rem; }
+            .modal-title { font-size: 1.8rem; }
+            
+            /* Sidebar */
+            .sidebar { padding: 30px 20px; }
+            
+            /* Modal adjustments */
+            .article-modal { padding: 80px 20px 20px 20px; } /* More top padding for close button */
+            .close-modal { top: 20px; right: 20px; }
+            .modal-content { padding-bottom: 20px; }
         }
     </style>
 </head>
@@ -145,7 +238,7 @@
                 <article class="blog-card theme-blue" onclick="openArticle('article1')">
                     <div class="blog-date"><i class="far fa-clock"></i> Dec 14, 2025 • 5 min read</div>
                     <h2 class="blog-title">Demystifying LLMs: How Transformers Changed AI</h2>
-                    <p class="blog-excerpt">From GPT-1 to GPT-4, understand the architecture behind the revolution. What exactly is 'Attention' and why do we need it?</p>
+                    <p class="blog-excerpt">From GPT-1 to GPT-4, understand the architecture behind the revolution. What exactly is 'Attention'?</p>
                     <div class="read-more">Read Article <i class="fas fa-arrow-right"></i></div>
                 </article>
 
@@ -153,7 +246,7 @@
                 <article class="blog-card theme-green" onclick="openArticle('article2')">
                     <div class="blog-date"><i class="far fa-clock"></i> Nov 20, 2025 • 4 min read</div>
                     <h2 class="blog-title">Python for Data: Why Pandas is still King</h2>
-                    <p class="blog-excerpt">In a world of Spark and Polars, why does Pandas remain the essential tool for every Data Scientist? A look at efficiency and syntax.</p>
+                    <p class="blog-excerpt">In a world of Spark and Polars, why does Pandas remain the essential tool for every Data Scientist?</p>
                     <div class="read-more">Read Article <i class="fas fa-arrow-right"></i></div>
                 </article>
 
@@ -161,7 +254,7 @@
                 <article class="blog-card theme-dark" onclick="openArticle('article3')">
                     <div class="blog-date" style="color: #aaa;"><i class="far fa-clock"></i> Oct 05, 2025 • 6 min read</div>
                     <h2 class="blog-title">CNNs vs RNNs: Choosing the Right Architecture</h2>
-                    <p class="blog-excerpt" style="color: #ccc;">Should you use a Convolutional Network or a Recurrent one? Breaking down image processing vs sequential data tasks.</p>
+                    <p class="blog-excerpt" style="color: #ccc;">Should you use a Convolutional Network or a Recurrent one? Breaking down image processing tasks.</p>
                     <div class="read-more">Read Article <i class="fas fa-arrow-right"></i></div>
                 </article>
 
@@ -169,7 +262,7 @@
                 <article class="blog-card theme-red" onclick="openArticle('article4')">
                     <div class="blog-date"><i class="far fa-clock"></i> Sep 12, 2025 • 3 min read</div>
                     <h2 class="blog-title">Building your first AI Agent</h2>
-                    <p class="blog-excerpt">Moving beyond chatbots. How to create an AI that can actually browse the web and perform tasks for you.</p>
+                    <p class="blog-excerpt">Moving beyond chatbots. How to create an AI that can actually browse the web and perform tasks.</p>
                     <div class="read-more">Read Article <i class="fas fa-arrow-right"></i></div>
                 </article>
 
