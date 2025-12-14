@@ -1,0 +1,209 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #0f172a; /* Dark Blue/Grey Background */
+    color: #e2e8f0;
+    line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: rgba(15, 23, 42, 0.95);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #1e293b;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #38bdf8; /* Light Blue */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #38bdf8;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+    padding-top: 60px;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin: 10px 0;
+    background: linear-gradient(to right, #38bdf8, #818cf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.typing-text {
+    font-family: 'Fira Code', monospace;
+    font-size: 1.5rem;
+    color: #94a3b8;
+    margin-bottom: 20px;
+}
+
+.social-buttons {
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn.primary {
+    background-color: #38bdf8;
+    color: #0f172a;
+}
+
+.btn.social {
+    background-color: #1e293b;
+    color: #fff;
+    border: 1px solid #38bdf8;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(56, 189, 248, 0.3);
+}
+
+/* Sections General */
+.container {
+    padding: 80px 10%;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 50px;
+    color: #fff;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    width: 60%;
+    height: 3px;
+    background: #38bdf8;
+    position: absolute;
+    bottom: -10px;
+    left: 20%;
+}
+
+/* About Grid */
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.about-card {
+    background: #1e293b;
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid #334155;
+    transition: 0.3s;
+}
+
+.about-card:hover {
+    border-color: #38bdf8;
+    transform: translateY(-5px);
+}
+
+.about-card .icon {
+    font-size: 2rem;
+    color: #38bdf8;
+    margin-bottom: 15px;
+}
+
+/* Skills */
+.skill-category {
+    margin-bottom: 40px;
+}
+
+.skill-category h3 {
+    margin-bottom: 20px;
+    color: #94a3b8;
+}
+
+/* GitHub Stats */
+.stats-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.streak-container img, .stats-grid img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+/* Footer */
+footer {
+    background: #020617;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.social-links-footer {
+    margin: 20px 0;
+    font-size: 1.5rem;
+}
+
+.social-links-footer a {
+    color: #94a3b8;
+    margin: 0 10px;
+    transition: 0.3s;
+}
+
+.social-links-footer a:hover {
+    color: #38bdf8;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2.5rem; }
+    .nav-links { display: none; } /* Simple hide for mobile for now */
+}
