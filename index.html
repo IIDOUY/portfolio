@@ -3,115 +3,561 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ayoubi Yassine | AI & Data Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Ayoubi Yassine | AI Portfolio</title>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <!-- Font Awesome for clean social icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- RESET & BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* --- DASHBOARD CONTAINER --- */
+        .dashboard-container {
+            width: 100%;
+            max-width: 1400px;
+            background-color: #ffffff;
+            border-radius: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: flex;
+            min-height: 800px;
+        }
+
+        /* --- LEFT SIDE: MAIN CONTENT (70%) --- */
+        .main-content {
+            flex: 2.5;
+            padding: 50px 60px;
+            background-color: #ffffff;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #000;
+        }
+
+        .logo-icon {
+            width: 20px;
+            height: 20px;
+            background: #000;
+            border-radius: 0 10px 10px 10px;
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        
+        .nav-links a:hover { color: #000; }
+
+        .btn-black {
+            background-color: #111;
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .btn-black:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .hero p {
+            color: #888;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: #111;
+            margin-bottom: 40px;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        /* Search Bar (Now "Ask Me") */
+        .search-container {
+            position: relative;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 18px 25px;
+            padding-right: 110px;
+            border-radius: 50px;
+            border: 1px solid #eee;
+            background: #fff;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            bottom: 5px;
+            background: #111;
+            color: #fff;
+            border: none;
+            border-radius: 40px;
+            padding: 0 25px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        /* Portfolio Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .card {
+            border-radius: 20px;
+            padding: 25px;
+            position: relative;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 180px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .card-icon {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .card p {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        /* Card Colors */
+        .card-blue { background-color: #4FB6F9; color: white; grid-column: 1; }
+        .card-red { background-color: #FF7556; color: white; grid-column: 2; }
+        .card-dark { background-color: #3F8CFF; color: white; grid-column: 3; }
+        
+        .card-light {
+            background-color: #B8DEE8;
+            color: #333;
+            grid-column: 1;
+            grid-row: 2;
+        }
+        
+        .card-center {
+            background-color: #79D2B6; /* Mint/Teal */
+            color: #1a4d3e;
+            grid-column: 2;
+            grid-row: 2;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .card-green {
+            background-color: #42D598;
+            color: white;
+            grid-column: 3;
+            grid-row: 2;
+        }
+
+        /* Footer Links */
+        .footer-links {
+            margin-top: 60px;
+            color: #888;
+            font-size: 0.85rem;
+        }
+        .footer-links a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: #888;
+            transition: 0.3s;
+        }
+        .footer-links a:hover { color: #000; }
+
+        /* --- RIGHT SIDE: SIDEBAR (30%) --- */
+        .sidebar {
+            flex: 1;
+            background-color: #fcfcfc;
+            padding: 50px 40px;
+            border-left: 1px solid #f0f0f0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .sidebar h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .section-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+            margin-top: 30px;
+            font-weight: 500;
+        }
+
+        /* Social Grid */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .social-card {
+            background: #111;
+            color: #fff;
+            border-radius: 15px;
+            padding: 15px 10px;
+            text-align: center;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 1/1.2;
+            text-decoration: none;
+        }
+
+        .social-card:hover { background: #333; transform: translateY(-3px); }
+        .social-card.blue { background: #0077B5; } /* LinkedIn Color */
+        .social-card.kaggle { background: #20BEFF; } 
+
+        .social-card i {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        /* Skills Chips (Replacing Time Slots) */
+        .skills-container { margin-top: 10px; }
+        
+        .skill-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+
+        .skill-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            min-width: 60px;
+            color: #444;
+        }
+
+        .chips-scroll {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+        .chips-scroll::-webkit-scrollbar { display: none; }
+
+        .chip {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 8px 15px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            color: #666;
+            background: white;
+        }
+
+        .chip.active {
+            background-color: #42D598;
+            color: white;
+            border-color: #42D598;
+        }
+
+        /* Bottom Controls */
+        .sidebar-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 30px;
+        }
+
+        .btn-book {
+            background: #111;
+            color: #fff;
+            padding: 15px 40px;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-book:hover { background: #333; }
+
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .dashboard-container { flex-direction: column; height: auto; border-radius: 20px;}
+            .main-content { padding: 30px; }
+            .sidebar { padding: 30px; border-left: none; border-top: 1px solid #eee; }
+            .services-grid { grid-template-columns: 1fr 1fr; }
+            .card-center { grid-column: 1 / -1; }
+            .card-light { grid-column: auto; }
+            .card-green { grid-column: auto; }
+            .card-dark { grid-column: auto; }
+        }
+
+        @media (max-width: 600px) {
+            .services-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .hero h1 { font-size: 1.8rem; }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="logo">AY.</div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <!-- Hero Section -->
-    <header id="home" class="hero">
-        <div class="hero-content">
-            <span class="greeting">Hi 👋, I'm</span>
-            <h1>AYOUBI Yassine</h1>
-            <h2 class="typing-text">I am a <span id="typewriter"></span></h2>
-            <p class="bio">Passionate Python Developer | Data Analytics & AI Student</p>
-            
-            <div class="social-buttons">
-                <a href="https://linkedin.com/in/yassine-ayoubi" target="_blank" class="btn social"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                <a href="https://github.com/IIDOUY" target="_blank" class="btn social"><i class="fab fa-github"></i> GitHub</a>
-                <a href="https://yassineportfolio.ct.ws/resume" target="_blank" class="btn primary">View Resume</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- About Section -->
-    <section id="about" class="container">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-grid">
-            <div class="about-card">
-                <i class="fas fa-graduation-cap icon"></i>
-                <h3>Education</h3>
-                <p>Data Analytics & AI Student currently learning LLMs, ML & Deep Learning.</p>
-            </div>
-            <div class="about-card">
-                <i class="fas fa-handshake icon"></i>
-                <h3>Collaboration</h3>
-                <p>Looking to collaborate on Open Source AI Projects & building Smart AI Assistants.</p>
-            </div>
-            <div class="about-card">
-                <i class="fas fa-bolt icon"></i>
-                <h3>Fun Fact</h3>
-                <p>I am Creative, Serious, and disciplined in my coding journey.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="container">
-        <h2 class="section-title">Tech Stack</h2>
+    <div class="dashboard-container">
         
-        <div class="skill-category">
-            <h3>Languages</h3>
-            <div class="icons">
-                <img src="https://skillicons.dev/icons?i=python,c,java,js,html,css,php,dart,kotlin" alt="Languages">
+        <!-- LEFT SIDE: PORTFOLIO CONTENT -->
+        <main class="main-content">
+            <header>
+                <div class="logo">
+                    <div class="logo-icon"></div>
+                    AYOUBI <span style="font-weight:300; font-size: 0.8em; margin-left: 5px; color:#888;">Yassine</span>
+                </div>
+                <nav class="nav-links">
+                    <a href="#">My Resume</a>
+                    <a href="#">My Blog</a>
+                </nav>
+                <a href="mailto:yassine.ayoubi.ca@gmail.com" class="btn-black">Contact Me</a>
+            </header>
+
+            <section class="hero">
+                <p>Data Analytic & AI Student</p>
+                <h1>Building Intelligence<br>From Data.</h1>
+                
+                <div class="search-container">
+                    <!-- Fun decorative search bar -->
+                    <input type="text" class="search-input" placeholder="Ask me about Python, ML, or AI..." readonly>
+                    <button class="search-btn"><i class="fas fa-robot"></i> Ask AI</button>
+                </div>
+            </section>
+
+            <section class="services-grid">
+                <!-- Card 1: Experience -->
+                <a href="#" class="card card-blue">
+                    <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>Student</h3>
+                    <p>Pursuing Data Analytics & AI. Learning LLMs & Deep Learning.</p>
+                </a>
+
+                <!-- Card 2: Featured Project -->
+                <a href="#" class="card card-red">
+                    <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Sales Forecaster</h3>
+                    <p>Time-series prediction model using Python & Tableau.</p>
+                    <div style="position: absolute; bottom: 20px; right: 20px;"><i class="fas fa-arrow-right"></i></div>
+                </a>
+
+                <!-- Card 3: Skills -->
+                <div class="card card-dark">
+                    <div class="card-icon"><i class="fas fa-code"></i></div>
+                    <h3>Core Skills</h3>
+                    <p>Python, Java, C<br>TensorFlow, PyTorch</p>
+                    <div style="font-size: 0.8rem; margin-top:10px; opacity:0.7;">. . . . . . .</div>
+                </div>
+
+                <!-- Card 4: Another Project -->
+                <a href="#" class="card card-light">
+                    <div class="card-icon" style="background: rgba(0,0,0,0.1);"><i class="fas fa-robot"></i></div>
+                    <h3>Smart AI Assistant</h3>
+                    <p>Building a custom assistant using LLMs.</p>
+                    <div style="position: absolute; bottom: 20px; right: 20px; color:#ff6b6b;"><i class="fas fa-circle-notch"></i></div>
+                </a>
+
+                <!-- Card 5: Resume / Call to Action -->
+                <a href="https://yassineportfolio.ct.ws/resume" class="card card-center">
+                    <h3>Check my Resume & Experiences</h3>
+                    <div style="margin-top: 15px; width: 50px; height: 50px; background:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; border: 3px solid #eee;">
+                        <i class="fas fa-file-alt" style="color: #79D2B6; font-size: 1.2rem;"></i>
+                    </div>
+                </a>
+
+                <!-- Card 6: Blog -->
+                <a href="https://yassineportfolio.ct.ws/blog" class="card card-green">
+                    <div class="card-icon" style="align-self: flex-end;"><i class="fas fa-pen-fancy"></i></div>
+                    <h3>Read My Blog</h3>
+                    <p>Articles on AI & Tech</p>
+                </a>
+            </section>
+
+            <div class="footer-links">
+                <a href="https://linkedin.com/in/yassine-ayoubi">LinkedIn</a> | 
+                <a href="https://github.com/IIDOUY">GitHub</a> | 
+                <a href="https://kaggle.com/yassineayoubi">Kaggle</a>
+                <span style="float: right;">© 2025 Yassine Ayoubi</span>
             </div>
-        </div>
+        </main>
 
-        <div class="skill-category">
-            <h3>AI & Data Science</h3>
-            <div class="icons">
-                <img src="https://skillicons.dev/icons?i=tensorflow,pytorch,scikitlearn,pandas,numpy,matplotlib,seaborn,anaconda,jupyter,huggingface,ollama" alt="AI Tools">
+        <!-- RIGHT SIDE: SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-arrow-up-long"></i>
+                <div class="menu-icon">. :</div>
             </div>
-        </div>
 
-        <div class="skill-category">
-            <h3>Tools & DevOps</h3>
-            <div class="icons">
-                <img src="https://skillicons.dev/icons?i=git,docker,mysql,firebase,postman,figma,linux" alt="Tools">
+            <h2>Let's Connect & Collaborate.</h2>
+            
+            <p class="section-label">Find me on</p>
+
+            <div class="social-grid">
+                <a href="https://github.com/IIDOUY" target="_blank" class="social-card">
+                    <i class="fab fa-github"></i>
+                    <div>GitHub<br>Profile</div>
+                </a>
+                <a href="https://linkedin.com/in/yassine-ayoubi" target="_blank" class="social-card blue">
+                    <i class="fab fa-linkedin-in"></i>
+                    <div>LinkedIn<br>Connect</div>
+                </a>
+                <a href="https://kaggle.com/yassineayoubi" target="_blank" class="social-card kaggle">
+                    <i class="fab fa-kaggle"></i>
+                    <div>Kaggle<br>Stats</div>
+                </a>
             </div>
-        </div>
-    </section>
 
-    <!-- GitHub Stats Section -->
-    <section id="stats" class="container">
-        <h2 class="section-title">GitHub Stats</h2>
-        <div class="stats-grid">
-            <img src="https://github-readme-stats.vercel.app/api?username=IIDOUY&show_icons=true&theme=tokyonight&hide_border=true&bg_color=1e293b" alt="Stats">
-            <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=IIDOUY&layout=compact&theme=tokyonight&hide_border=true&bg_color=1e293b" alt="Languages">
-        </div>
-        <div class="streak-container">
-            <img src="https://github-readme-streak-stats.herokuapp.com/?user=IIDOUY&theme=tokyonight&hide_border=true&background=1e293b" alt="Streak">
-        </div>
-    </section>
+            <p class="section-label" style="display:flex; justify-content:space-between;">
+                My Tech Stack
+                <span style="width: 35px; height: 35px; background: #111; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; margin-top: -10px;">
+                    <i class="fas fa-code"></i>
+                </span>
+            </p>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <h2>Let's Connect</h2>
-        <p>Email: <a href="mailto:yassine.ayoubi.ca@gmail.com">yassine.ayoubi.ca@gmail.com</a></p>
-        <div class="social-links-footer">
-            <a href="https://twitter.com/@a_you_bi"><i class="fab fa-twitter"></i></a>
-            <a href="https://instagram.com/a_you_bi"><i class="fab fa-instagram"></i></a>
-            <a href="https://kaggle.com/yassineayoubi"><i class="fab fa-kaggle"></i></a>
-        </div>
-        <p class="copyright">© 2025 Ayoubi Yassine. Built with HTML, CSS, JS.</p>
-    </footer>
+            <div class="skills-container">
+                <!-- Row 1: Languages -->
+                <div class="skill-row">
+                    <div class="skill-label">Code</div>
+                    <div class="chips-scroll">
+                        <div class="chip active">Python</div>
+                        <div class="chip">Java</div>
+                        <div class="chip">C</div>
+                        <div class="chip">JavaScript</div>
+                    </div>
+                </div>
 
-    <script src="script.js"></script>
+                <!-- Row 2: AI/Data -->
+                <div class="skill-row">
+                    <div class="skill-label">Data</div>
+                    <div class="chips-scroll">
+                        <div class="chip active">Pandas</div>
+                        <div class="chip">NumPy</div>
+                        <div class="chip">SQL</div>
+                    </div>
+                </div>
+
+                <!-- Row 3: ML -->
+                <div class="skill-row">
+                    <div class="skill-label">AI / ML</div>
+                    <div class="chips-scroll">
+                        <div class="chip active">TensorFlow</div>
+                        <div class="chip">PyTorch</div>
+                        <div class="chip">Scikit-Learn</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px; font-size: 0.9rem; text-decoration: underline;">
+                <a href="https://yassineportfolio.ct.ws" style="color:#111;">Visit Main Portfolio Site</a>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="arrows" style="color:#ccc; letter-spacing:3px;">.. ►</div>
+                <a href="mailto:yassine.ayoubi.ca@gmail.com" class="btn-book">Send Email</a>
+            </div>
+        </aside>
+
+    </div>
+
 </body>
 </html>
