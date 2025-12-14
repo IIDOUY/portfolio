@@ -2,11 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Critical for Mobile -->
     <title>Ayoubi Yassine | AI Portfolio</title>
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -39,7 +37,7 @@
             min-height: 800px;
         }
 
-        /* --- LEFT SIDE: MAIN CONTENT (70%) --- */
+        /* --- LEFT SIDE: MAIN CONTENT --- */
         .main-content {
             flex: 2.5;
             padding: 50px 60px;
@@ -52,6 +50,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 50px;
+            flex-wrap: wrap; /* Allows wrapping on small screens */
+            gap: 20px;
         }
 
         .logo {
@@ -94,11 +94,7 @@
             font-weight: 500;
             font-size: 0.9rem;
             transition: 0.3s;
-        }
-
-        .btn-black:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            white-space: nowrap;
         }
 
         /* Hero Section */
@@ -121,10 +117,11 @@
             line-height: 1.2;
         }
 
-        /* Search Bar (Now "Ask Me") */
+        /* Search Bar */
         .search-container {
             position: relative;
             max-width: 500px;
+            width: 100%;
             margin: 0 auto;
         }
 
@@ -154,7 +151,7 @@
             font-weight: 500;
         }
 
-        /* Portfolio Grid */
+        /* Services Grid */
         .services-grid {
             display: grid;
             grid-template-columns: 1fr 1.2fr 1fr;
@@ -205,50 +202,26 @@
             line-height: 1.4;
         }
 
-        /* Card Colors */
+        /* Desktop Card Positions */
         .card-blue { background-color: #4FB6F9; color: white; grid-column: 1; }
         .card-red { background-color: #FF7556; color: white; grid-column: 2; }
         .card-dark { background-color: #3F8CFF; color: white; grid-column: 3; }
-        
-        .card-light {
-            background-color: #B8DEE8;
-            color: #333;
-            grid-column: 1;
-            grid-row: 2;
-        }
-        
-        .card-center {
-            background-color: #79D2B6; /* Mint/Teal */
-            color: #1a4d3e;
-            grid-column: 2;
-            grid-row: 2;
-            text-align: center;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .card-green {
-            background-color: #42D598;
-            color: white;
-            grid-column: 3;
-            grid-row: 2;
-        }
+        .card-light { background-color: #B8DEE8; color: #333; grid-column: 1; grid-row: 2; }
+        .card-center { background-color: #79D2B6; color: #1a4d3e; grid-column: 2; grid-row: 2; text-align: center; justify-content: center; align-items: center; }
+        .card-green { background-color: #42D598; color: white; grid-column: 3; grid-row: 2; }
 
-        /* Footer Links */
         .footer-links {
             margin-top: 60px;
             color: #888;
             font-size: 0.85rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
         }
-        .footer-links a {
-            margin-right: 20px;
-            text-decoration: none;
-            color: #888;
-            transition: 0.3s;
-        }
-        .footer-links a:hover { color: #000; }
+        .footer-links a { margin-right: 20px; text-decoration: none; color: #888; }
+        .footer-links span { margin-left: auto; }
 
-        /* --- RIGHT SIDE: SIDEBAR (30%) --- */
+        /* --- RIGHT SIDE: SIDEBAR --- */
         .sidebar {
             flex: 1;
             background-color: #fcfcfc;
@@ -279,7 +252,6 @@
             font-weight: 500;
         }
 
-        /* Social Grid */
         .social-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -303,18 +275,10 @@
             text-decoration: none;
         }
 
-        .social-card:hover { background: #333; transform: translateY(-3px); }
-        .social-card.blue { background: #0077B5; } /* LinkedIn Color */
+        .social-card.blue { background: #0077B5; }
         .social-card.kaggle { background: #20BEFF; } 
+        .social-card i { font-size: 1.4rem; margin-bottom: 10px; }
 
-        .social-card i {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-        }
-
-        /* Skills Chips (Replacing Time Slots) */
-        .skills-container { margin-top: 10px; }
-        
         .skill-row {
             display: flex;
             align-items: center;
@@ -346,14 +310,8 @@
             color: #666;
             background: white;
         }
+        .chip.active { background-color: #42D598; color: white; border-color: #42D598; }
 
-        .chip.active {
-            background-color: #42D598;
-            color: white;
-            border-color: #42D598;
-        }
-
-        /* Bottom Controls */
         .sidebar-footer {
             margin-top: auto;
             display: flex;
@@ -371,28 +329,66 @@
             font-weight: 600;
             cursor: pointer;
             font-size: 0.9rem;
-            transition: 0.3s;
             text-decoration: none;
         }
 
-        .btn-book:hover { background: #333; }
-
-        /* Responsive */
+        /* --- RESPONSIVE CSS --- */
+        
+        /* Tablet & Small Desktop (Up to 1100px) */
         @media (max-width: 1100px) {
-            .dashboard-container { flex-direction: column; height: auto; border-radius: 20px;}
-            .main-content { padding: 30px; }
-            .sidebar { padding: 30px; border-left: none; border-top: 1px solid #eee; }
+            .dashboard-container { flex-direction: column; height: auto; }
+            .sidebar { border-left: none; border-top: 1px solid #eee; padding-bottom: 50px;}
             .services-grid { grid-template-columns: 1fr 1fr; }
-            .card-center { grid-column: 1 / -1; }
-            .card-light { grid-column: auto; }
-            .card-green { grid-column: auto; }
-            .card-dark { grid-column: auto; }
+            
+            /* Reset specific placements for 2 columns */
+            .card-center { grid-column: 1 / -1; } /* Span full width */
+            .card-light { grid-column: auto; grid-row: auto; }
+            .card-green { grid-column: auto; grid-row: auto; }
         }
 
-        @media (max-width: 600px) {
-            .services-grid { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
+        /* Mobile (Up to 768px) */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .dashboard-container { border-radius: 20px; }
+            .main-content { padding: 30px 20px; }
+            
+            /* Navigation */
+            header { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .nav-links { display: none; } /* Hide links on mobile for cleaner look */
+            .btn-black { width: 100%; text-align: center; }
+            .logo { font-size: 1.4rem; }
+
+            /* Hero */
             .hero h1 { font-size: 1.8rem; }
+            .search-input { padding-right: 50px; font-size: 0.8rem; }
+            .search-btn { padding: 0 15px; font-size: 0.8rem; }
+
+            /* Grid becomes 1 column */
+            .services-grid { 
+                grid-template-columns: 1fr; 
+                gap: 15px;
+            }
+
+            /* Reset ALL specific grid positioning for 1 column */
+            .card-blue, .card-red, .card-dark, 
+            .card-light, .card-center, .card-green {
+                grid-column: auto;
+                grid-row: auto;
+                min-height: 160px;
+            }
+
+            /* Sidebar changes */
+            .sidebar { padding: 30px 20px; }
+            .sidebar h2 { font-size: 1.5rem; }
+            .social-grid { gap: 5px; }
+            .social-card { padding: 10px 5px; }
+            
+            .footer-links span {
+                float: none;
+                display: block;
+                margin-top: 10px;
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -400,13 +396,14 @@
 
     <div class="dashboard-container">
         
-        <!-- LEFT SIDE: PORTFOLIO CONTENT -->
+        <!-- MAIN CONTENT -->
         <main class="main-content">
             <header>
                 <div class="logo">
                     <div class="logo-icon"></div>
                     AYOUBI <span style="font-weight:300; font-size: 0.8em; margin-left: 5px; color:#888;">Yassine</span>
                 </div>
+                <!-- Links hidden on mobile -->
                 <nav class="nav-links">
                     <a href="#">My Resume</a>
                     <a href="#">My Blog</a>
@@ -419,21 +416,20 @@
                 <h1>Building Intelligence<br>From Data.</h1>
                 
                 <div class="search-container">
-                    <!-- Fun decorative search bar -->
                     <input type="text" class="search-input" placeholder="Ask me about Python, ML, or AI..." readonly>
-                    <button class="search-btn"><i class="fas fa-robot"></i> Ask AI</button>
+                    <button class="search-btn"><i class="fas fa-robot"></i></button>
                 </div>
             </section>
 
             <section class="services-grid">
-                <!-- Card 1: Experience -->
+                <!-- Card 1 -->
                 <a href="#" class="card card-blue">
                     <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
                     <h3>Student</h3>
                     <p>Pursuing Data Analytics & AI. Learning LLMs & Deep Learning.</p>
                 </a>
 
-                <!-- Card 2: Featured Project -->
+                <!-- Card 2 -->
                 <a href="#" class="card card-red">
                     <div class="card-icon"><i class="fas fa-chart-line"></i></div>
                     <h3>Sales Forecaster</h3>
@@ -441,7 +437,7 @@
                     <div style="position: absolute; bottom: 20px; right: 20px;"><i class="fas fa-arrow-right"></i></div>
                 </a>
 
-                <!-- Card 3: Skills -->
+                <!-- Card 3 -->
                 <div class="card card-dark">
                     <div class="card-icon"><i class="fas fa-code"></i></div>
                     <h3>Core Skills</h3>
@@ -449,7 +445,7 @@
                     <div style="font-size: 0.8rem; margin-top:10px; opacity:0.7;">. . . . . . .</div>
                 </div>
 
-                <!-- Card 4: Another Project -->
+                <!-- Card 4 -->
                 <a href="#" class="card card-light">
                     <div class="card-icon" style="background: rgba(0,0,0,0.1);"><i class="fas fa-robot"></i></div>
                     <h3>Smart AI Assistant</h3>
@@ -457,7 +453,7 @@
                     <div style="position: absolute; bottom: 20px; right: 20px; color:#ff6b6b;"><i class="fas fa-circle-notch"></i></div>
                 </a>
 
-                <!-- Card 5: Resume / Call to Action -->
+                <!-- Card 5 -->
                 <a href="https://yassineportfolio.ct.ws/resume" class="card card-center">
                     <h3>Check my Resume & Experiences</h3>
                     <div style="margin-top: 15px; width: 50px; height: 50px; background:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; border: 3px solid #eee;">
@@ -465,7 +461,7 @@
                     </div>
                 </a>
 
-                <!-- Card 6: Blog -->
+                <!-- Card 6 -->
                 <a href="https://yassineportfolio.ct.ws/blog" class="card card-green">
                     <div class="card-icon" style="align-self: flex-end;"><i class="fas fa-pen-fancy"></i></div>
                     <h3>Read My Blog</h3>
@@ -477,11 +473,11 @@
                 <a href="https://linkedin.com/in/yassine-ayoubi">LinkedIn</a> | 
                 <a href="https://github.com/IIDOUY">GitHub</a> | 
                 <a href="https://kaggle.com/yassineayoubi">Kaggle</a>
-                <span style="float: right;">© 2025 Yassine Ayoubi</span>
+                <span>© 2025 Yassine Ayoubi</span>
             </div>
         </main>
 
-        <!-- RIGHT SIDE: SIDEBAR -->
+        <!-- SIDEBAR (Stacks to bottom on mobile) -->
         <aside class="sidebar">
             <div class="sidebar-header">
                 <i class="fas fa-arrow-up-long"></i>
@@ -495,15 +491,15 @@
             <div class="social-grid">
                 <a href="https://github.com/IIDOUY" target="_blank" class="social-card">
                     <i class="fab fa-github"></i>
-                    <div>GitHub<br>Profile</div>
+                    <div>GitHub</div>
                 </a>
                 <a href="https://linkedin.com/in/yassine-ayoubi" target="_blank" class="social-card blue">
                     <i class="fab fa-linkedin-in"></i>
-                    <div>LinkedIn<br>Connect</div>
+                    <div>LinkedIn</div>
                 </a>
                 <a href="https://kaggle.com/yassineayoubi" target="_blank" class="social-card kaggle">
                     <i class="fab fa-kaggle"></i>
-                    <div>Kaggle<br>Stats</div>
+                    <div>Kaggle</div>
                 </a>
             </div>
 
@@ -515,18 +511,18 @@
             </p>
 
             <div class="skills-container">
-                <!-- Row 1: Languages -->
+                <!-- Row 1 -->
                 <div class="skill-row">
                     <div class="skill-label">Code</div>
                     <div class="chips-scroll">
                         <div class="chip active">Python</div>
                         <div class="chip">Java</div>
                         <div class="chip">C</div>
-                        <div class="chip">JavaScript</div>
+                        <div class="chip">JS</div>
                     </div>
                 </div>
 
-                <!-- Row 2: AI/Data -->
+                <!-- Row 2 -->
                 <div class="skill-row">
                     <div class="skill-label">Data</div>
                     <div class="chips-scroll">
@@ -536,13 +532,12 @@
                     </div>
                 </div>
 
-                <!-- Row 3: ML -->
+                <!-- Row 3 -->
                 <div class="skill-row">
-                    <div class="skill-label">AI / ML</div>
+                    <div class="skill-label">AI</div>
                     <div class="chips-scroll">
                         <div class="chip active">TensorFlow</div>
                         <div class="chip">PyTorch</div>
-                        <div class="chip">Scikit-Learn</div>
                     </div>
                 </div>
             </div>
@@ -560,4 +555,4 @@
     </div>
 
 </body>
-</html>
+                </html>
